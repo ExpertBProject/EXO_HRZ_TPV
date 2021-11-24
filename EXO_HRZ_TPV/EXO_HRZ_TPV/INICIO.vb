@@ -50,6 +50,9 @@ Public Class INICIO
                 Case "140"
                     Clase = New EXO_ODLN(objGlobal)
                     Return CType(Clase, EXO_ODLN).SBOApp_ItemEvent(infoEvento)
+                Case "EXO_COBROT"
+                    Clase = New EXO_COBROT(objGlobal)
+                    Return CType(Clase, EXO_COBROT).SBOApp_ItemEvent(infoEvento)
             End Select
 
             Return MyBase.SBOApp_ItemEvent(infoEvento)
@@ -59,5 +62,26 @@ Public Class INICIO
         Finally
             Clase = Nothing
         End Try
+    End Function
+
+    Public Overrides Function SBOApp_FormDataEvent(infoEvento As BusinessObjectInfo) As Boolean
+        Dim Res As Boolean = True
+        Dim Clase As Object = Nothing
+        Try
+            Select Case infoEvento.FormTypeEx
+                Case "140"
+                    Clase = New EXO_ODLN(objGlobal)
+                    Return CType(Clase, EXO_ODLN).SBOApp_FormDataEvent(infoEvento)
+            End Select
+
+            Return MyBase.SBOApp_FormDataEvent(infoEvento)
+
+        Catch ex As Exception
+            objGlobal.Mostrar_Error(ex, EXO_TipoMensaje.Excepcion, EXO_TipoSalidaMensaje.MessageBox, SAPbouiCOM.BoMessageTime.bmt_Medium, SAPbouiCOM.BoStatusBarMessageType.smt_Error)
+            Return False
+        Finally
+            Clase = Nothing
+        End Try
+
     End Function
 End Class
