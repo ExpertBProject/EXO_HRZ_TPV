@@ -72,6 +72,9 @@
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EXO_BasicDLL">
       <HintPath>..\..\..\..\..\..\Cliente\9.1.1.0\x64\desarrollo\EXO_BasicDLL.dll</HintPath>
     </Reference>
@@ -92,6 +95,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -110,6 +114,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EXO_Apertura.vb" />
+    <Compile Include="EXO_Cierre.vb" />
     <Compile Include="EXO_COBROT.vb" />
     <Compile Include="EXO_GLOBALES.vb" />
     <Compile Include="EXO_ODLN.vb" />
@@ -170,13 +176,37 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="XML_FILTROS\XML_FILTROS.xml" />
+    <EmbeddedResource Include="REPORT\Ventas Diarias Pedidos.rpt" />
+    <EmbeddedResource Include="REPORT\Ventas Diarias.rpt" />
+    <EmbeddedResource Include="XML_FILTROS\XML_FILTROS.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FORMS\EXO_COBROT.srf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="XML_BD\UDFs_ODLN.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XML_MENUS\xMenuAma.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XML_BD\UDO_EXO_APERCIERRE.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FORMS\sEXO_Apertura.srf" />
+    <EmbeddedResource Include="FORMS\sEXO_Cierre.srf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="SQL_HANA\HANA_TEST_copbrosefectivo.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL_HANA\HANA_copbrosefectivo.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
