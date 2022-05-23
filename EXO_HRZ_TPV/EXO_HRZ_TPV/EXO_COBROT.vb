@@ -101,10 +101,11 @@ Public Class EXO_COBROT
     Private Function EventHandler_Form_Visible(ByRef objGlobal As EXO_UIAPI.EXO_UIAPI, ByRef pVal As ItemEvent) As Boolean
         Dim oForm As SAPbouiCOM.Form = Nothing
         EventHandler_Form_Visible = False
-
+        Dim dFecha As Date = New Date(Now.Year, Now.Month, Now.Day)
         Try
             oForm = objGlobal.SBOApp.Forms.Item(pVal.FormUID)
             If oForm.Visible = True Then
+                oForm.DataSources.UserDataSources.Item("UDFECHA").Value = dFecha.ToShortDateString
                 Dim sTipo As String = oForm.DataSources.UserDataSources.Item("UDTIPO").Value.ToString
                 Select Case sTipo
                     Case "C"

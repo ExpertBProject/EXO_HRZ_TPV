@@ -59,7 +59,16 @@ Public Class EXO_Apertura
                         End Try
 #End Region
                         oForm.DataBrowser.BrowseBy = "txtDoc"
+#Region "Cargar Combo ALM"
+                        Dim sSQL As String = "SELECT ""WhsCode"" ""Código"", ""WhsName"" ""Almacén"" FROM OWHS"
+                        objGlobal.funcionesUI.cargaCombo(CType(oForm.Items.Item("cbALM").Specific, SAPbouiCOM.ComboBox).ValidValues, sSQL)
+                        sSQL = "" 'Buscamos el valor que tienen las opciones de usuario
+                        Dim sALM As String = objGlobal.refDi.SQL.sqlStringB1(sSQL)
+                        If sALM.Trim <> "" Then
+                            CType(oForm.Items.Item("cbALM").Specific, SAPbouiCOM.ComboBox).Select("", BoSearchKey.psk_ByValue)
+                        End If
 
+#End Region
                         oForm.Items.Item("txtDoc").SetAutoManagedAttribute(BoAutoManagedAttr.ama_Editable, 4, BoModeVisualBehavior.mvb_True)
                         oForm.Items.Item("txtFecAp").SetAutoManagedAttribute(BoAutoManagedAttr.ama_Editable, 1, BoModeVisualBehavior.mvb_False)
                         oForm.Items.Item("txtSalIni").SetAutoManagedAttribute(BoAutoManagedAttr.ama_Editable, 1, BoModeVisualBehavior.mvb_False)
